@@ -6,6 +6,8 @@ import com.example.libraryrest.model.entity.Author;
 import com.example.libraryrest.repository.AuthorRepository;
 import com.example.libraryrest.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @Cacheable(value = "authors", key = "#pageable.pageNumber + '_' + #pageable.pageSize")
     public Page<AuthorDto> getAllAuthors(Pageable pageable) {
         return authorRepository.findAll(pageable)
                 .map(AuthorServiceImpl::convertToDto);
@@ -35,6 +38,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @CacheEvict(value = "authors", allEntries = true)
     public AuthorDto addAuthor(AuthorDto authorDto) {
         Author author = convertToEntity(authorDto);
         Author savedAuthor = authorRepository.save(author);

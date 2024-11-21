@@ -6,6 +6,7 @@ import com.example.libraryrest.model.entity.Book;
 import com.example.libraryrest.repository.BookRepository;
 import com.example.libraryrest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Cacheable(value = "books", key = "#pageable.pageNumber + '_' + #pageable.pageSize")
     public Page<BookDto> getAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable)
                 .map(this::convertToDto);
     }
 
     @Override
+    @Cacheable(value = "books", key = "#id")
     public BookDto getBookById(Long id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new BookException(BookException.BookExceptionProfile.BOOK_NOT_FOUND));

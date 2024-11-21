@@ -6,6 +6,7 @@ import com.example.libraryrest.model.entity.Category;
 import com.example.libraryrest.repository.CategoryRepository;
 import com.example.libraryrest.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "categories", key = "#pageable.pageNumber + '_' + #pageable.pageSize")
     public Page<CategoryDto> getAllCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable)
                 .map(CategoryServiceImpl::convertToDto);
     }
 
     @Override
+    @Cacheable(value = "categories", key = "#id")
     public CategoryDto getCategoryById(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new CategoryException(CategoryException.CategoryExceptionProfile.CATEGORY_NOT_FOUND));
