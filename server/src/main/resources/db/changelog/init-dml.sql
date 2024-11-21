@@ -1,0 +1,33 @@
+INSERT INTO Authors (author_id, name, dateOfBirth, created_at, updated_at)
+VALUES
+    ('1', 'George Orwell', '1903-06-25', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('2', 'J.K. Rowling', '1965-07-31', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('3', 'Jane Austen', '1775-12-16', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('4', 'Isaac Asimov', '1920-01-02', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('5', 'Stephen King', '1947-09-21', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Categories (category_id, name, created_at, updated_at)
+VALUES
+    ('1', 'Science Fiction', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('2', 'Fantasy', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('3', 'Romance', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('4', 'Horror', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('5', 'Mystery', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('6', 'Historical Fiction', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('7', 'Non-Fiction', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Books (id, title, isbn, publicationYear, authorId, categoryId, created_at, updated_at)
+VALUES
+    ('1', '1984', '9780451524935', 1949, '1', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('2', 'Harry Potter and the Sorcerers Stone', '9780590353427', 1997, '2', '2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('3', 'Pride and Prejudice', '9780199535569', 1813, '3', '3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('4', 'Foundation', '9780553293357', 1951, '4', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('5', 'The Shining', '9780307743657', 1977, '5', '4', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('6', 'Murder on the Orient Express', '9780062073501', 1934, '3', '5', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('7', 'Animal Farm', '9780451526342', 1945, '1', '7', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('8', 'The Hobbit', '9780345339683', 1937, '2', '2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('9', 'A Brief History of Time', '9780553380163', 1988, '4', '7', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('10', 'The Stand', '9780307947307', 1978, '5', '4', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('11', 'Emma', '9780141439587', 1815, '3', '3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('12', 'The Winds of Winter', '9780553801477', 2023, '2', '2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13', 'The Great Gatsby', '9780743273565', 1925, '3', '6', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

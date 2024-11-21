@@ -63,7 +63,6 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
-    // Допоміжні методи
     private BookDto convertToDto(Book book) {
         return new BookDto(
                 book.getId(),
@@ -71,7 +70,9 @@ public class BookServiceImpl implements BookService {
                 book.getIsbn(),
                 book.getPublicationYear(),
                 AuthorServiceImpl.convertToDto(book.getAuthor()),
-                CategoryServiceImpl.convertToDto(book.getCategory())
+                CategoryServiceImpl.convertToDto(book.getCategory()),
+                book.getCreatedAt(),
+                book.getUpdatedAt()
         );
     }
 
@@ -83,6 +84,8 @@ public class BookServiceImpl implements BookService {
         book.setPublicationYear(bookDto.getPublicationYear());
         book.setAuthor(AuthorServiceImpl.convertToEntity(bookDto.getAuthor()));
         book.setCategory(CategoryServiceImpl.convertToEntity(bookDto.getCategory()));
+        book.setCreatedAt(bookDto.getCreatedAt());
+        book.setUpdatedAt(bookDto.getUpdatedAt());
         return book;
     }
 
